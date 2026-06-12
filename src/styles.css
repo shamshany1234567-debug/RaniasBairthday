@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -25,7 +11,6 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -45,100 +30,171 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-champagne: var(--champagne);
+  --color-blush: var(--blush);
+  --color-rose-gold: var(--rose-gold);
+  --color-lavender: var(--lavender);
+  --color-pearl: var(--pearl);
+  --font-display: "Cormorant Garamond", "Playfair Display", serif;
+  --font-body: "Inter", "Tajawal", system-ui, sans-serif;
+  --font-arabic: "Tajawal", "Cormorant Garamond", serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --radius: 1rem;
+
+  /* Luxury palette */
+  --champagne: oklch(0.86 0.07 85);
+  --blush: oklch(0.88 0.05 15);
+  --rose-gold: oklch(0.78 0.09 35);
+  --lavender: oklch(0.84 0.06 300);
+  --pearl: oklch(0.98 0.01 80);
+
+  --background: oklch(0.16 0.02 320);
+  --foreground: oklch(0.97 0.02 80);
+  --card: oklch(0.22 0.03 320 / 0.5);
+  --card-foreground: oklch(0.97 0.02 80);
+  --popover: oklch(0.18 0.02 320);
+  --popover-foreground: oklch(0.97 0.02 80);
+  --primary: oklch(0.78 0.09 35);
+  --primary-foreground: oklch(0.16 0.02 320);
+  --secondary: oklch(0.86 0.07 85);
+  --secondary-foreground: oklch(0.16 0.02 320);
+  --muted: oklch(0.3 0.03 320);
+  --muted-foreground: oklch(0.78 0.03 80);
+  --accent: oklch(0.84 0.06 300);
+  --accent-foreground: oklch(0.16 0.02 320);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --border: oklch(1 0 0 / 0.12);
+  --input: oklch(1 0 0 / 0.15);
+  --ring: oklch(0.78 0.09 35);
+
+  --gradient-luxury: radial-gradient(ellipse at top, oklch(0.35 0.08 330) 0%, oklch(0.16 0.02 320) 55%, oklch(0.1 0.02 300) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.92 0.08 85) 0%, oklch(0.78 0.11 45) 50%, oklch(0.65 0.13 25) 100%);
+  --gradient-rose: linear-gradient(135deg, oklch(0.92 0.05 15) 0%, oklch(0.82 0.09 25) 100%);
+  --shadow-glow: 0 0 60px oklch(0.78 0.09 35 / 0.35), 0 0 120px oklch(0.84 0.06 300 / 0.2);
+  --shadow-soft: 0 30px 80px -20px oklch(0 0 0 / 0.5);
+  --portrait-ring: oklch(0.86 0.09 45);
+  --cake-cream: oklch(0.96 0.025 75);
+  --cake-rose: oklch(0.82 0.08 18);
+  --cake-gold: oklch(0.82 0.1 65);
+  --cake-lilac: oklch(0.75 0.08 310);
+  --cake-shadow: oklch(0.09 0.03 320 / 0.55);
 }
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
-}
+.dark { color-scheme: dark; }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
   body {
-    background-color: var(--color-background);
+    background: var(--gradient-luxury);
+    background-attachment: fixed;
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+  .font-display { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.02em; }
+  .font-arabic { font-family: var(--font-arabic); }
 }
+
+@utility glass {
+  background: linear-gradient(135deg, oklch(1 0 0 / 0.08), oklch(1 0 0 / 0.02));
+  backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.12);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-rose {
+  background: var(--gradient-rose);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-luxury {
+  box-shadow: var(--shadow-glow);
+}
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+  10% { opacity: 1; transform: translateY(90vh) scale(1); }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) translateX(40px) scale(0.6); opacity: 0; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes flicker {
+  0%, 100% { transform: scaleY(1) rotate(-1deg); opacity: 1; }
+  50% { transform: scaleY(1.1) rotate(1deg); opacity: 0.92; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-twinkle { animation: twinkle 2.4s ease-in-out infinite; }
+.animate-flicker { animation: flicker 0.18s ease-in-out infinite; transform-origin: bottom center; }
+
+@layer components {
+  .portrait-medallion {
+    position: relative;
+    width: clamp(13rem, 22vw, 18rem);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    filter: drop-shadow(0 1.5rem 3.5rem oklch(0.08 0.03 320 / 0.72));
+  }
+  .portrait-image {
+    width: 88%;
+    height: 88%;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 1px solid color-mix(in oklab, var(--portrait-ring) 70%, transparent);
+    box-shadow: inset 0 0 0 0.35rem oklch(0.12 0.025 320), 0 0 3rem oklch(0.78 0.09 35 / 0.22);
+  }
+  .portrait-halo, .portrait-orbit { position: absolute; inset: 0; border-radius: 9999px; pointer-events: none; }
+  .portrait-halo {
+    inset: 3%;
+    border: 1px solid color-mix(in oklab, var(--champagne) 52%, transparent);
+    box-shadow: 0 0 0 0.6rem oklch(0.78 0.09 35 / 0.04), 0 0 4rem oklch(0.84 0.06 300 / 0.25);
+  }
+  .portrait-orbit {
+    background: conic-gradient(from 12deg, transparent 0 8%, var(--rose-gold) 9% 9.7%, transparent 10% 24%, var(--champagne) 25% 25.7%, transparent 26% 48%, var(--rose-gold) 49% 49.7%, transparent 50% 74%, var(--champagne) 75% 75.7%, transparent 76%);
+    mask: radial-gradient(circle, transparent 67%, black 68% 70%, transparent 71%);
+    animation: portrait-spin 24s linear infinite;
+  }
+  .cake-scene::before { content: ""; position: absolute; inset: 16% 0 0; border-radius: 50%; background: radial-gradient(circle, oklch(0.78 0.09 35 / 0.14), transparent 65%); filter: blur(1.25rem); }
+  .cake-tier { overflow: hidden; border: 1px solid oklch(1 0 0 / 0.26); border-radius: 1.8rem 1.8rem 1.25rem 1.25rem; box-shadow: inset 0 0.5rem 1rem oklch(1 0 0 / 0.23), 0 1.1rem 2.2rem var(--cake-shadow); }
+  .cake-tier-top { background: linear-gradient(100deg, var(--cake-cream), var(--blush), var(--cake-cream)); }
+  .cake-tier-middle { background: linear-gradient(100deg, var(--cake-cream), oklch(0.9 0.06 70), var(--cake-cream)); }
+  .cake-tier-bottom { background: linear-gradient(100deg, var(--cake-cream), var(--lavender), var(--cake-cream)); }
+  .cake-icing { position: absolute; inset: 0 0 auto; height: 1.15rem; box-shadow: 0 0.4rem 0.7rem oklch(0.1 0.02 320 / 0.16); }
+  .cake-icing-rose { background: var(--gradient-rose); }
+  .cake-icing-gold { background: var(--gradient-gold); }
+  .cake-icing-lavender { background: linear-gradient(135deg, var(--lavender), var(--blush)); }
+  .cake-pearl { position: absolute; top: 2.6rem; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--champagne); box-shadow: 0 0 0.8rem var(--champagne); }
+  .cake-garland { position: absolute; inset: 3.25rem 0 auto; color: oklch(0.57 0.1 45); font-size: 0.75rem; letter-spacing: 0.2rem; }
+  .cake-monogram { position: absolute; inset: 2.1rem 0 auto; color: oklch(0.54 0.08 325); font-size: 3rem; text-shadow: 0 1px oklch(1 0 0 / 0.75); }
+  .candle-stick { width: 0.55rem; height: 3rem; border-radius: 0.2rem; background: repeating-linear-gradient(135deg, var(--cake-rose) 0 0.35rem, var(--cake-cream) 0.35rem 0.68rem); box-shadow: inset 0.15rem 0 0.2rem oklch(1 0 0 / 0.45); }
+  .candle-flame { width: 0.85rem; height: 1.4rem; border-radius: 55% 45% 55% 45%; background: radial-gradient(circle at 50% 72%, var(--pearl), oklch(0.86 0.17 75) 42%, oklch(0.68 0.2 40) 100%); box-shadow: 0 0 1.3rem oklch(0.85 0.17 65), 0 0 2.5rem oklch(0.72 0.17 42); }
+  .cake-plate { border-radius: 50%; background: var(--gradient-gold); box-shadow: 0 0.65rem 0 var(--rose-gold), 0 1.4rem 2.5rem var(--cake-shadow); }
+  .cake-slice { background: linear-gradient(135deg, var(--cake-cream), var(--cake-rose)); clip-path: polygon(100% 0, 0 0, 100% 100%); }
+}
+
+@keyframes portrait-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .portrait-orbit { animation: none; } }
