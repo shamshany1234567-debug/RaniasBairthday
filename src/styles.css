@@ -75,6 +75,12 @@
   --gradient-rose: linear-gradient(135deg, oklch(0.92 0.05 15) 0%, oklch(0.82 0.09 25) 100%);
   --shadow-glow: 0 0 60px oklch(0.78 0.09 35 / 0.35), 0 0 120px oklch(0.84 0.06 300 / 0.2);
   --shadow-soft: 0 30px 80px -20px oklch(0 0 0 / 0.5);
+  --portrait-ring: oklch(0.86 0.09 45);
+  --cake-cream: oklch(0.96 0.025 75);
+  --cake-rose: oklch(0.82 0.08 18);
+  --cake-gold: oklch(0.82 0.1 65);
+  --cake-lilac: oklch(0.75 0.08 310);
+  --cake-shadow: oklch(0.09 0.03 320 / 0.55);
 }
 
 .dark { color-scheme: dark; }
@@ -143,3 +149,52 @@
 
 .animate-twinkle { animation: twinkle 2.4s ease-in-out infinite; }
 .animate-flicker { animation: flicker 0.18s ease-in-out infinite; transform-origin: bottom center; }
+
+@layer components {
+  .portrait-medallion {
+    position: relative;
+    width: clamp(13rem, 22vw, 18rem);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    filter: drop-shadow(0 1.5rem 3.5rem oklch(0.08 0.03 320 / 0.72));
+  }
+  .portrait-image {
+    width: 88%;
+    height: 88%;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 1px solid color-mix(in oklab, var(--portrait-ring) 70%, transparent);
+    box-shadow: inset 0 0 0 0.35rem oklch(0.12 0.025 320), 0 0 3rem oklch(0.78 0.09 35 / 0.22);
+  }
+  .portrait-halo, .portrait-orbit { position: absolute; inset: 0; border-radius: 9999px; pointer-events: none; }
+  .portrait-halo {
+    inset: 3%;
+    border: 1px solid color-mix(in oklab, var(--champagne) 52%, transparent);
+    box-shadow: 0 0 0 0.6rem oklch(0.78 0.09 35 / 0.04), 0 0 4rem oklch(0.84 0.06 300 / 0.25);
+  }
+  .portrait-orbit {
+    background: conic-gradient(from 12deg, transparent 0 8%, var(--rose-gold) 9% 9.7%, transparent 10% 24%, var(--champagne) 25% 25.7%, transparent 26% 48%, var(--rose-gold) 49% 49.7%, transparent 50% 74%, var(--champagne) 75% 75.7%, transparent 76%);
+    mask: radial-gradient(circle, transparent 67%, black 68% 70%, transparent 71%);
+    animation: portrait-spin 24s linear infinite;
+  }
+  .cake-scene::before { content: ""; position: absolute; inset: 16% 0 0; border-radius: 50%; background: radial-gradient(circle, oklch(0.78 0.09 35 / 0.14), transparent 65%); filter: blur(1.25rem); }
+  .cake-tier { overflow: hidden; border: 1px solid oklch(1 0 0 / 0.26); border-radius: 1.8rem 1.8rem 1.25rem 1.25rem; box-shadow: inset 0 0.5rem 1rem oklch(1 0 0 / 0.23), 0 1.1rem 2.2rem var(--cake-shadow); }
+  .cake-tier-top { background: linear-gradient(100deg, var(--cake-cream), var(--blush), var(--cake-cream)); }
+  .cake-tier-middle { background: linear-gradient(100deg, var(--cake-cream), oklch(0.9 0.06 70), var(--cake-cream)); }
+  .cake-tier-bottom { background: linear-gradient(100deg, var(--cake-cream), var(--lavender), var(--cake-cream)); }
+  .cake-icing { position: absolute; inset: 0 0 auto; height: 1.15rem; box-shadow: 0 0.4rem 0.7rem oklch(0.1 0.02 320 / 0.16); }
+  .cake-icing-rose { background: var(--gradient-rose); }
+  .cake-icing-gold { background: var(--gradient-gold); }
+  .cake-icing-lavender { background: linear-gradient(135deg, var(--lavender), var(--blush)); }
+  .cake-pearl { position: absolute; top: 2.6rem; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--champagne); box-shadow: 0 0 0.8rem var(--champagne); }
+  .cake-garland { position: absolute; inset: 3.25rem 0 auto; color: oklch(0.57 0.1 45); font-size: 0.75rem; letter-spacing: 0.2rem; }
+  .cake-monogram { position: absolute; inset: 2.1rem 0 auto; color: oklch(0.54 0.08 325); font-size: 3rem; text-shadow: 0 1px oklch(1 0 0 / 0.75); }
+  .candle-stick { width: 0.55rem; height: 3rem; border-radius: 0.2rem; background: repeating-linear-gradient(135deg, var(--cake-rose) 0 0.35rem, var(--cake-cream) 0.35rem 0.68rem); box-shadow: inset 0.15rem 0 0.2rem oklch(1 0 0 / 0.45); }
+  .candle-flame { width: 0.85rem; height: 1.4rem; border-radius: 55% 45% 55% 45%; background: radial-gradient(circle at 50% 72%, var(--pearl), oklch(0.86 0.17 75) 42%, oklch(0.68 0.2 40) 100%); box-shadow: 0 0 1.3rem oklch(0.85 0.17 65), 0 0 2.5rem oklch(0.72 0.17 42); }
+  .cake-plate { border-radius: 50%; background: var(--gradient-gold); box-shadow: 0 0.65rem 0 var(--rose-gold), 0 1.4rem 2.5rem var(--cake-shadow); }
+  .cake-slice { background: linear-gradient(135deg, var(--cake-cream), var(--cake-rose)); clip-path: polygon(100% 0, 0 0, 100% 100%); }
+}
+
+@keyframes portrait-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .portrait-orbit { animation: none; } }

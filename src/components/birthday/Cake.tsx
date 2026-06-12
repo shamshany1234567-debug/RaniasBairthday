@@ -97,7 +97,6 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
                 initial={{ x: 0, opacity: 1 }}
                 animate={{ x: 80, opacity: 0, rotate: 25 }}
                 transition={{ duration: 1.4 }}
-                className="absolute top-0 right-0 w-16 h-full"
                 className="absolute top-0 right-0 w-16 h-full cake-slice"
               />
             )}
