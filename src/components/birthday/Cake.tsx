@@ -40,7 +40,7 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
         >
           Make A Wish
         </motion.h2>
-        <p className="text-pearl/60 text-sm uppercase tracking-[0.4em] mb-16">An interactive moment</p>
+        <p className="text-pearl/60 text-sm uppercase tracking-[0.4em] mb-20 md:mb-16">An interactive moment</p>
 
         {/* Cake */}
         <motion.div
@@ -48,7 +48,7 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2 }}
-          className="cake-scene relative mx-auto w-80 md:w-105 h-80 md:h-105 mb-12"
+          className="cake-scene relative mx-auto w-84 md:w-105 h-90 mt-8 md:mt-0 mb-12"
           animate={candleLit ? { filter: "drop-shadow(0 0 60px oklch(0.92 0.15 60 / 0.6))" } : {}}
         >
           {/* Candles */}
