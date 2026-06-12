@@ -59,8 +59,8 @@ export const config = {
   },
 
   gallerySection: {
-    title: "A Collection Of Moments I'll Never Trade For Anything",
-    subtitle: "Tiny memories. Endless meaning.",
+    title: "A Gallery of Us",
+    subtitle: "Beautiful moments, quietly becoming a lifetime of memories.",
   },
 
   letters: [
