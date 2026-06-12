@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import confetti from "canvas-confetti";
+import { Button } from "@/components/ui/button";
 
 type Stage = "idle" | "lit" | "wish" | "blown" | "cut";
 
@@ -47,11 +48,11 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2 }}
-          className="relative mx-auto w-72 md:w-96 h-72 md:h-96 mb-12"
+          className="cake-scene relative mx-auto w-80 md:w-105 h-80 md:h-105 mb-12"
           animate={candleLit ? { filter: "drop-shadow(0 0 60px oklch(0.92 0.15 60 / 0.6))" } : {}}
         >
           {/* Candles */}
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-6 z-10">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-7 z-20">
             {[0, 1, 2].map((i) => (
               <div key={i} className="flex flex-col items-center">
                 <AnimatePresence>
@@ -60,11 +61,7 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0, y: -20 }}
-                      className="w-3 h-5 rounded-full animate-flicker"
-                      style={{
-                        background: "radial-gradient(circle at 50% 70%, #fff 0%, #ffd97a 40%, #ff8a3d 100%)",
-                        boxShadow: "0 0 20px #ffaa44, 0 0 40px #ff8a3d",
-                      }}
+                      className="candle-flame animate-flicker"
                     />
                   )}
                   {stage === "blown" && (
@@ -76,35 +73,38 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
                     />
                   )}
                 </AnimatePresence>
-                <div className="w-2 h-12 rounded-sm" style={{ background: "linear-gradient(180deg, #f7c5d0, #e8a87c)" }} />
+                <div className="candle-stick" />
               </div>
             ))}
           </div>
 
           {/* Top tier */}
-          <div className="absolute top-16 left-1/2 -translate-x-1/2 w-44 h-20 rounded-2xl shadow-luxury overflow-hidden" style={{ background: "linear-gradient(180deg, #fff5e1 0%, #f7c5d0 100%)" }}>
-            <div className="absolute inset-x-0 top-0 h-3" style={{ background: "var(--gradient-rose)" }} />
+          <div className="cake-tier cake-tier-top absolute top-16 left-1/2 -translate-x-1/2 w-46 md:w-52 h-21">
+            <div className="cake-icing cake-icing-rose" />
+            <span className="cake-pearl left-[18%]" /><span className="cake-pearl left-1/2" /><span className="cake-pearl right-[18%]" />
           </div>
           {/* Middle tier */}
-          <div className="absolute top-32 left-1/2 -translate-x-1/2 w-60 h-24 rounded-3xl shadow-luxury overflow-hidden" style={{ background: "linear-gradient(180deg, #fff 0%, #f5d6a8 100%)" }}>
-            <div className="absolute inset-x-0 top-0 h-3" style={{ background: "var(--gradient-gold)" }} />
+          <div className="cake-tier cake-tier-middle absolute top-34 left-1/2 -translate-x-1/2 w-64 md:w-72 h-25">
+            <div className="cake-icing cake-icing-gold" />
+            <div className="cake-garland" aria-hidden="true">✦　✧　✦　✧　✦</div>
           </div>
           {/* Bottom tier */}
-          <div className="absolute top-52 left-1/2 -translate-x-1/2 w-72 h-28 rounded-3xl shadow-luxury overflow-hidden" style={{ background: "linear-gradient(180deg, #fff5e1 0%, #d4b8e8 100%)" }}>
-            <div className="absolute inset-x-0 top-0 h-3" style={{ background: "linear-gradient(135deg, #d4b8e8, #f7c5d0)" }} />
+          <div className="cake-tier cake-tier-bottom absolute top-55 left-1/2 -translate-x-1/2 w-78 md:w-88 h-29">
+            <div className="cake-icing cake-icing-lavender" />
+            <div className="cake-monogram font-display">R</div>
             {sliced && (
               <motion.div
                 initial={{ x: 0, opacity: 1 }}
                 animate={{ x: 80, opacity: 0, rotate: 25 }}
                 transition={{ duration: 1.4 }}
                 className="absolute top-0 right-0 w-16 h-full"
-                style={{ background: "linear-gradient(135deg, #fff, #f7c5d0)", clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
+                className="absolute top-0 right-0 w-16 h-full cake-slice"
               />
             )}
           </div>
 
           {/* Plate */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-3 rounded-full opacity-60" style={{ background: "var(--gradient-gold)" }} />
+          <div className="cake-plate absolute bottom-0 left-1/2 -translate-x-1/2 w-82 md:w-98 h-5" />
         </motion.div>
 
         <AnimatePresence mode="wait">
@@ -128,16 +128,15 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
             { label: "Blow Out The Candles", action: blow, disabled: stage === "idle" || stage === "blown" || stage === "cut" },
             { label: "Cut The Cake", action: cut, disabled: stage !== "blown" },
           ].map((b) => (
-            <motion.button
+            <motion.div
               key={b.label}
-              onClick={b.action}
-              disabled={b.disabled}
               whileHover={!b.disabled ? { scale: 1.05, y: -2 } : {}}
               whileTap={!b.disabled ? { scale: 0.97 } : {}}
-              className="glass rounded-full px-5 py-3 text-xs md:text-sm uppercase tracking-[0.2em] text-pearl disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
-              {b.label}
-            </motion.button>
+              <Button variant="celebration" size="lg" onClick={b.action} disabled={b.disabled}>
+                {b.label}
+              </Button>
+            </motion.div>
           ))}
         </div>
       </div>
