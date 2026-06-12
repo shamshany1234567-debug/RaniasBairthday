@@ -45,10 +45,10 @@ export function Gallery({ title, subtitle, photos }: { title: string; subtitle: 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: (index % 4) * 0.08 }}
-              className={`col-span-1 ${index === 0 ? "col-span-2" : ""} ${photoLayouts[index] ?? "md:col-span-4"}`}
+              className={`min-w-0 overflow-hidden rounded-2xl ${index === 0 ? "col-span-2 aspect-[16/10]" : "col-span-1 aspect-[5/6]"} md:aspect-auto ${photoLayouts[index] ?? "md:col-span-4"}`}
             >
-              <Button variant="gallery" size="gallery" onClick={() => setSelected(index)} aria-label={`Open memory ${index + 1}`}>
-                <img src={photo.src} alt={photo.caption || `Birthday memory ${index + 1}`} loading="lazy" className="h-full min-h-56 w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04] md:min-h-0" />
+              <Button variant="gallery" size="gallery" onClick={() => setSelected(index)} aria-label={`Open memory ${index + 1}`} className="h-full min-h-0">
+                <img src={photo.src} alt={photo.caption || `Birthday memory ${index + 1}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04]" />
                 <span className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-55 transition-opacity duration-500 group-hover:opacity-80" />
                 <span className="absolute bottom-4 left-5 font-display text-2xl italic text-pearl/85">{String(index + 1).padStart(2, "0")}</span>
                 <span className="absolute bottom-5 right-5 text-[9px] uppercase tracking-[0.3em] text-champagne/0 transition-colors duration-500 group-hover:text-champagne/75">View memory</span>
