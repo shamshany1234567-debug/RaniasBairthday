@@ -37,7 +37,7 @@ export function Gallery({ title, subtitle, photos }: { title: string; subtitle: 
           <p className="font-display max-w-sm border-l border-champagne/25 pl-6 text-xl italic leading-relaxed text-pearl/70">{subtitle}</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-12 md:auto-rows-[17rem] md:gap-6">
+        <div className="gallery-mobile-track -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-5 md:mx-0 md:grid md:grid-cols-12 md:auto-rows-[17rem] md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {photos.map((photo, index) => (
             <motion.div
               key={photo.src}
@@ -45,7 +45,7 @@ export function Gallery({ title, subtitle, photos }: { title: string; subtitle: 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: (index % 4) * 0.08 }}
-              className={`min-w-0 overflow-hidden rounded-2xl ${index === 0 ? "col-span-2 aspect-[16/10]" : "col-span-1 aspect-[5/6]"} md:aspect-auto ${photoLayouts[index] ?? "md:col-span-4"}`}
+              className={`aspect-[4/5] w-[78vw] shrink-0 snap-center overflow-hidden rounded-3xl md:w-auto md:shrink md:overflow-hidden md:rounded-2xl md:aspect-auto ${photoLayouts[index] ?? "md:col-span-4"}`}
             >
               <Button variant="gallery" size="gallery" onClick={() => setSelected(index)} aria-label={`Open memory ${index + 1}`} className="h-full min-h-0">
                 <img src={photo.src} alt={photo.caption || `Birthday memory ${index + 1}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04]" />
