@@ -44,7 +44,7 @@ function Index() {
 
       {opened && (
         <div className="relative z-10">
-          <Hero title={config.hero.title} subtitle={config.hero.subtitle} body={config.hero.body} />
+          <Hero title={config.hero.title} subtitle={config.hero.subtitle} body={config.hero.body} portrait={config.portrait} />
           <Cake messages={config.cake} />
           <Gallery title={config.gallerySection.title} subtitle={config.gallerySection.subtitle} photos={config.gallery} />
           <Letters letters={config.letters} />

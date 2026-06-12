@@ -120,20 +120,21 @@ export function Cake({ messages }: { messages: { light: string; wish: string; bl
           )}
         </AnimatePresence>
 
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+        <div className="cake-actions mx-auto grid max-w-3xl grid-cols-2 gap-2 p-2 md:grid-cols-4">
           {[
-            { label: "Light The Candles", action: light, disabled: stage !== "idle" },
-            { label: "Make A Wish", action: wish, disabled: stage === "idle" || stage === "blown" || stage === "cut" },
-            { label: "Blow Out The Candles", action: blow, disabled: stage === "idle" || stage === "blown" || stage === "cut" },
-            { label: "Cut The Cake", action: cut, disabled: stage !== "blown" },
+            { number: "01", label: "Light Candles", action: light, disabled: stage !== "idle" },
+            { number: "02", label: "Make A Wish", action: wish, disabled: stage === "idle" || stage === "blown" || stage === "cut" },
+            { number: "03", label: "Blow Them Out", action: blow, disabled: stage === "idle" || stage === "blown" || stage === "cut" },
+            { number: "04", label: "Cut The Cake", action: cut, disabled: stage !== "blown" },
           ].map((b) => (
             <motion.div
               key={b.label}
               whileHover={!b.disabled ? { scale: 1.05, y: -2 } : {}}
               whileTap={!b.disabled ? { scale: 0.97 } : {}}
             >
-              <Button variant="celebration" size="lg" onClick={b.action} disabled={b.disabled}>
-                {b.label}
+              <Button variant="celebration" size="lg" onClick={b.action} disabled={b.disabled} className="h-16 w-full px-3 md:h-20">
+                <span className="cake-action-number">{b.number}</span>
+                <span className="text-[10px] leading-tight md:text-[11px]">{b.label}</span>
               </Button>
             </motion.div>
           ))}
