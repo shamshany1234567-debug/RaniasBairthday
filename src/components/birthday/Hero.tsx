@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import portrait from "@/assets/symbolic-birthday-portrait.png";
 
 export function Hero({ title, subtitle, body }: { title: string; subtitle: string; body: string }) {
   return (
@@ -8,7 +9,7 @@ export function Hero({ title, subtitle, body }: { title: string; subtitle: strin
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-        className="space-y-8 max-w-3xl"
+        className="space-y-7 max-w-3xl"
       >
         <motion.div
           initial={{ letterSpacing: "0.4em", opacity: 0 }}
@@ -51,6 +52,23 @@ export function Hero({ title, subtitle, body }: { title: string; subtitle: strin
           className="h-px w-40 mx-auto"
           style={{ background: "var(--gradient-gold)" }}
         />
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.88 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.5, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          className="portrait-medallion mx-auto mt-10"
+        >
+          <span className="portrait-orbit" aria-hidden="true" />
+          <span className="portrait-halo" aria-hidden="true" />
+          <img
+            src={portrait}
+            alt="Elegant symbolic birthday portrait"
+            width={1024}
+            height={1024}
+            className="portrait-image"
+          />
+        </motion.div>
       </motion.div>
     </section>
   );

@@ -19,6 +19,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "A handcrafted, cinematic birthday gift — letters, memories, wishes, and one last surprise." },
       { property: "og:title", content: "A Birthday Surprise" },
       { property: "og:description", content: "Open your gift. A cinematic, luxury birthday experience." },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
