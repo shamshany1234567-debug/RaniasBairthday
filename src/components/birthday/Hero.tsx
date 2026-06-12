@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import portrait from "@/assets/symbolic-birthday-portrait.png";
 
-export function Hero({ title, subtitle, body }: { title: string; subtitle: string; body: string }) {
+export function Hero({ title, subtitle, body, portrait }: { title: string; subtitle: string; body: string; portrait: string }) {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center py-24">
       <motion.div
@@ -63,7 +62,7 @@ export function Hero({ title, subtitle, body }: { title: string; subtitle: strin
           <span className="portrait-halo" aria-hidden="true" />
           <img
             src={portrait}
-            alt="Elegant symbolic birthday portrait"
+            alt="Birthday portrait for Rania"
             width={1024}
             height={1024}
             className="portrait-image"

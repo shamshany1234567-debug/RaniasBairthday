@@ -12,11 +12,15 @@ import img8 from "@/assets/WhatsApp Image 2026-06-12 at 10.16.50 PM.jpeg";
 import img9 from "@/assets/WhatsApp Image 2026-06-12 at 10.16.51 PM (1).jpeg";
 import img10 from "@/assets/WhatsApp Image 2026-06-12 at 10.16.51 PM (2).jpeg";
 import img11 from "@/assets/WhatsApp Image 2026-06-12 at 10.16.51 PM.jpeg";
+import portrait from "@/assets/symbolic-birthday-portrait.png";
 
 export const config = {
 
   websiteUrl: "https://your-birthday-site.lovable.app",
   friendName: "Rania",
+
+  // 👑 غيّري الصورة هنا فقط لاختيار الصورة داخل الإطار الدائري
+  portrait,
 
   // 🎵 YouTube video ID (the part after v= in the URL)
   youtubeId: "OoyK4I3DyJ0",
