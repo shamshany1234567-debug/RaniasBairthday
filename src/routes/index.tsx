@@ -9,7 +9,6 @@ import { Gallery } from "@/components/birthday/Gallery";
 import { Letters } from "@/components/birthday/Letters";
 import { Wish } from "@/components/birthday/Wish";
 import { FinalSurprise } from "@/components/birthday/FinalSurprise";
-import { QRSection } from "@/components/birthday/QRSection";
 import { YouTubePlayer } from "@/components/birthday/YouTubePlayer";
 
 export const Route = createFileRoute("/")({
@@ -50,7 +49,6 @@ function Index() {
           <Letters letters={config.letters} />
           <Wish lines={config.wish} />
           <FinalSurprise {...config.final} />
-          <QRSection url={config.websiteUrl} />
           <footer className="py-12 text-center text-pearl/40 text-xs uppercase tracking-[0.4em]">
             Made with love {config.friendName}
           </footer>
